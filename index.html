@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UFT-8">
+    <title>Nested Proxy</title>
+    <script type="text/javascript" src="script.js"></script>
+<body>
+<script>
+
+    const proxy = deepProxy({})
+    proxy.a.b.c.d.e.f.g = 'deeply nested property';
+    console.log(proxy.a.b.c.d.e.f.g)
+</script>
+</body>
+</html>
