@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>js dom screener</title>
+    <style type="text/css">
+        p {
+            background: yellow;
+            margin: 1em 0;
+            width: 300px;
+            border-radius: 3px;
+            padding: 1em;
+            border: 1px #000 solid;
+        }
+        p.off {
+            background: black;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+<button>Cut/Insert paragraphs</button>
+
+<div id="paragraphWrapper">
+    <p>G'day mate</p>
+    <p>What's occurin'?</p>
+</div>
+
+<script type="application/javascript">
+    $( '#paragraphWrapper' ).click(function(e) {
+        const { target } = event;
+        if (target.tagName.toLowerCase() === 'p') {
+            $( target ).toggleClass( "off" );
+        }
+    });
+    var p;
+    $( "button" ).click(function() {
+        console.log('button clicked')
+        if ( p ) {
+            p.appendTo( "#paragraphWrapper" );
+            p = null;
+        } else {
+            p = $( "p" ).remove();
+        }
+    });
+
+
+
+
+</script>
+
+</body>
+</html>
+
+<!--
+  Consider the below HTML document. Something’s going wrong here after the <button> element is
+  clicked twice, can you see what it is?
+
+  Answer:
+  eventListeners need be added after dom created. so after second click there is eventListener on 'p' elements.
+
+  To test your basic understanding of DOM events we would like you to suggest at
+  least 2 ways the intended functionality could be restored.
+
+  Answer:
+  first solution i have call add eventListener again after appending p.
+  second solution i need to use event delegation and listen parent of p elements.
+-->
